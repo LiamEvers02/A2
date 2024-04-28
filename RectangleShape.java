@@ -1,7 +1,7 @@
 /*
  *	===============================================================================
  *	RectangleShape.java : A shape that is a rectangle.
- *  YOUR UPI:
+ *  YOUR UPI: LEVE092
  *	=============================================================================== */
 import java.awt.*;
 class RectangleShape extends Shape {
@@ -10,6 +10,9 @@ class RectangleShape extends Shape {
 		super(x ,y ,w, h ,pw ,ph, c, bc, pt);
 	}
 	public void draw(Graphics g) { //complete the draw method
-
+		g.setColor(color);
+		g.fillRect(x, y, width, height);
+		g.setColor(borderColor);
+		g.drawRect(x, y, width, height);
 	}
 }

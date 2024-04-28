@@ -1,7 +1,7 @@
 /* ==============================================
  *  Shape.java : The superclass of all shapes.
  *  A shape defines various properties, including selected, colour, width and height.
- *  YOUR UPI: ANSWER
+ *  YOUR UPI: LEVE092
  *  ===============================================================================
  */
 
@@ -14,11 +14,19 @@ abstract class Shape {
     public int x, y, width=DEFAULT_WIDTH, height=DEFAULT_HEIGHT, panelWidth=DEFAULT_PANEL_WIDTH, panelHeight=DEFAULT_PANEL_HEIGHT; // the bouncing area
     protected Color color = DEFAULT_COLOR, borderColor =DEFAULT_BORDER_COLOR ;
     protected MovingPath path = new BouncingPath(1, 2);
-
     //attributes
+    public static int numberOfShapes = 0;
+    public static String DEFAULT_LABEL = "0";
+    protected String label = DEFAULT_LABEL;
     //methods
+    public String getLabel(){return this.label;}
+    public void setLabel(String label){this.label = label;}
+    public void drawString(Graphics g){
+        g.setColor(Color.black);
+        g.drawString(label, x, y+10);
+    }
 	//modify both cosntructors
-    public Shape() {}
+    public Shape() {this.label = String.valueOf(++numberOfShapes);}
     public Shape(int x, int y, int w, int h, int pw, int ph, Color c, Color bc, PathType pt) {
         this.x = x;
         this.y = y;
@@ -28,6 +36,7 @@ abstract class Shape {
         height = h;
         color = c;
         borderColor = bc;
+        this.label = String.valueOf(++numberOfShapes);
 		if (pt == PathType.BOUNCING)
 			path = new BouncingPath(1, 2);
 		else

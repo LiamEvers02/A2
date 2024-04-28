@@ -1,7 +1,7 @@
 /*
  *	===============================================================================
  *	PolygonShape.java : A shape that is a polygon.
- *  YOUR UPI:
+ *  YOUR UPI: LEVE092
  *	=============================================================================== */
 import java.awt.*;
 import java.util.Arrays;
@@ -17,6 +17,19 @@ class PolygonShape extends SquareShape {
 		centre  = new Point(x + width/2, y + height/2);
 	}
 	public void draw(Graphics g) { //complete the draw method
+	
+		this.centre = new Point(this.getX() + this.radius, this.getY() + this.radius);
+        int[] xCoords = new int[numberOfSides];
+        int[] yCoords = new int[numberOfSides];
 
+        for(int i = 0; i < numberOfSides; i++){
+            double angle = (i*2*Math.PI)/numberOfSides;
+            xCoords[i] = (int) (centre.getX() + radius * Math.cos(angle));
+            yCoords[i] = (int) (centre.getY() + radius * Math.sin(angle));
+        }
+		g.setColor(color);
+		g.fillPolygon(xCoords, yCoords, xCoords.length);
+		g.setColor(borderColor);
+		g.drawPolygon(xCoords, yCoords, xCoords.length);
 	}
 }

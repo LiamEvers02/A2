@@ -1,12 +1,13 @@
 /*
  *  ============================================================================================
  *  A2.java : Extends JFrame and contains a panel where shapes move around on the screen.
- *  YOUR UPI: ANSWER
+ *  YOUR UPI: LEVE092
  *  ============================================================================================
  */
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.InputMismatchException;
 
 public class A2  extends JFrame {
 	private AnimationViewer bouncingPanel;  // panel for bouncing area
@@ -50,11 +51,11 @@ public class A2  extends JFrame {
 		pathComboBox = new JComboBox<PathType>(new DefaultComboBoxModel<PathType>(PathType.values()));
 		pathComboBox.addActionListener( new PathActionListener());
 		addButton = new JButton("Add");
-		//addButton.addActionListener( new AddListener());
+		addButton.addActionListener( new AddListener());
 		widthTextField = new JTextField(""+Shape.DEFAULT_WIDTH, 5);
 		heightTextField = new JTextField(""+Shape.DEFAULT_HEIGHT, 5);
 		heightTextField.setEditable(false);
-		//widthTextField.addActionListener( new WidthListener());
+		widthTextField.addActionListener( new WidthListener());
 		JPanel toolsPanel = new JPanel();
 		toolsPanel.setLayout(new BoxLayout(toolsPanel, BoxLayout.X_AXIS));
 		toolsPanel.add(new JLabel(" Shape: ", JLabel.RIGHT));
@@ -78,5 +79,21 @@ public class A2  extends JFrame {
 		}
 	}
 	//inner member classes
+	class AddListener implements ActionListener{
+		public void actionPerformed(ActionEvent e){
+			bouncingPanel.createNewShape();
+		}
+	}
+	class WidthListener implements ActionListener{
+		public void actionPerformed(ActionEvent e){
+			try{
+				int width = Integer.parseInt(widthTextField.getText());
+				if(width <= 0){throw new IllegalArgumentException();}
+				bouncingPanel.setCurrentWidth(width);
+			}catch(Exception ex){
+				widthTextField.setText(Integer.toString(bouncingPanel.getCurrentWidth()));
+			}
+		}
+	}
 }
 

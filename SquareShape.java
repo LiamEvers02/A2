@@ -1,7 +1,7 @@
 /**
  * ===============================================================================
  * SquareShape.java : A shape that is a square.
- * YOUR UPI:
+ * YOUR UPI: LEVE092
  * =============================================================================== */
 import java.awt.*;
 class SquareShape extends RectangleShape {
